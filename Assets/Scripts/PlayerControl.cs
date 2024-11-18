@@ -11,7 +11,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float forwardSpeed;
 
 
-    //[Header("Shooting")]
+    [Header("Shooting")]
+    public GameObject projecitlePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,12 @@ public class PlayerControl : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
 
         transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
+
+        //Shooting
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projecitlePrefab, transform.position, projecitlePrefab.transform.rotation);
+        }
     }
 
     private void FixedUpdate()

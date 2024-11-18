@@ -334,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeed: 180
   forwardSpeed: 5
+  projecitlePrefab: {fileID: 1549874249895794054, guid: 4a3316996b1d09a47bb40808d99428a5, type: 3}
 --- !u!65 &1814606304
 BoxCollider:
   m_ObjectHideFlags: 0
