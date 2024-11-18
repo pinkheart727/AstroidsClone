@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     [Header("Movement")]
-    public float horizontalInput;
-    public float forwardInput;
-    public float moveSpeed;
-    public float turnSpeed;
+    private float horizontalInput;
+    [SerializeField] private float turnSpeed;
+    private float verticalInput;
+    [SerializeField] private float forwardSpeed;
 
 
     //[Header("Shooting")]
@@ -22,9 +22,17 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Movement
+        //Rotation
         horizontalInput = Input.GetAxis("Horizontal");
 
         transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
+    }
+
+    private void FixedUpdate()
+    {
+        //Movement
+        verticalInput = Input.GetAxis("Vertical");
+
+        transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime * verticalInput);
     }
 }
