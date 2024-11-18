@@ -19,4 +19,12 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
