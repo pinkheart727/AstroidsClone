@@ -15,12 +15,18 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 1;
     public int enemyCount;
 
+    [Header("Game Over")]
+    private PlayerControl playerControlScript;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //Spawning
         SpawnEnemyWave(waveNumber);
+
+
+        //Player
+        playerControlScript = GameObject.Find("Player").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame

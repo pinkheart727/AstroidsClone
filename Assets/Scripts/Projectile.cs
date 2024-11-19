@@ -7,11 +7,14 @@ public class Projectile : MonoBehaviour
     [Header("Speed")]
     public float speed = 40.0f;
 
+    [Header("Game Over")]
+    private PlayerControl playerControlScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Player
+        playerControlScript = GameObject.Find("Player").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame

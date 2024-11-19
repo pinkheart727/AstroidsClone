@@ -14,10 +14,13 @@ public class PlayerControl : MonoBehaviour
     [Header("Shooting")]
     public GameObject projecitlePrefab;
 
+    [Header("Death")]
+    public bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+     
     }
 
     // Update is called once per frame
@@ -29,7 +32,7 @@ public class PlayerControl : MonoBehaviour
         transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
 
         //Shooting
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) )
         {
             Instantiate(projecitlePrefab, transform.position, transform.rotation);
         }
@@ -41,5 +44,14 @@ public class PlayerControl : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime * verticalInput);
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Game Over");
+            Destroy(gameObject);
+        }
     }
 }

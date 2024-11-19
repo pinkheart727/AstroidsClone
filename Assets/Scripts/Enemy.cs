@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour
     public bool hasBeenHit = false;
     public float deathDelay;
 
+    [Header("Game Over")]
+    private PlayerControl playercontrolScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +27,18 @@ public class Enemy : MonoBehaviour
 
         //Find Player
         player = GameObject.Find("Player");
+        playercontrolScript = GameObject.Find("Player").GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+  
     }
 
     private void FixedUpdate()
     {
-        //Follow Player
+        //Follow Player if Game continues
         Vector3 lookDirection = (player.transform.position - transform.position * speed).normalized;
 
         enemyRb.AddForce(lookDirection * speed);
