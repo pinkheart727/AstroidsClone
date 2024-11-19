@@ -27,12 +27,17 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         //Rotation
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (gameOver == false)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
 
-        transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
+            transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
+        }
 
+
+       
         //Shooting
-        if(Input.GetKeyDown(KeyCode.Space) )
+        if(Input.GetKeyDown(KeyCode.Space) && gameOver == false)
         {
             Instantiate(projecitlePrefab, transform.position, transform.rotation);
         }
@@ -41,9 +46,13 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         //Movement
-        verticalInput = Input.GetAxis("Vertical");
+        if (gameOver == false)
+        {
+            verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime * verticalInput);
+            transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime * verticalInput);
+        }
+        
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -51,7 +60,7 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Game Over");
-            Destroy(gameObject);
+            gameOver = true;
         }
     }
 }
