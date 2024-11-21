@@ -43,13 +43,18 @@ public class Enemy : MonoBehaviour
         {
             Vector3 lookDirection = (player.transform.position - transform.position * speed).normalized;
 
-            enemyRb.AddForce(lookDirection * speed);
+            transform.Translate(lookDirection * Time.deltaTime * speed);
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+        }
+
+        if(collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
