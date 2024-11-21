@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     [Header("Death")]
     public bool hasBeenHit = false;
     public float deathDelay;
+    private GameManager gm;
+    public int pointValue;
 
     [Header("Game Over")]
     private PlayerControl playercontrolScript;
@@ -28,6 +30,9 @@ public class Enemy : MonoBehaviour
         //Find Player
         player = GameObject.Find("Player");
         playercontrolScript = GameObject.Find("Player").GetComponent<PlayerControl>();
+
+        //Find Game Manager
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -51,12 +56,16 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Projectile"))
         {
+            hasBeenHit = true;
+            gm.AddScore(2);
             Destroy(gameObject);
+            
         }
 
         if(collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
+            
         }
     }
 }
