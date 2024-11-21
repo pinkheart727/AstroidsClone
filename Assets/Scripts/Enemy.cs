@@ -39,9 +39,12 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         //Follow Player if Game continues
-        Vector3 lookDirection = (player.transform.position - transform.position * speed).normalized;
+        if (playercontrolScript.gameOver == false)
+        {
+            Vector3 lookDirection = (player.transform.position - transform.position * speed).normalized;
 
-        enemyRb.AddForce(lookDirection * speed);
+            enemyRb.AddForce(lookDirection * speed);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
