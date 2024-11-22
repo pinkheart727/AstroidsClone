@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         //Follow Player if Game continues
-        if (playercontrolScript.gameOver == false)
+        if (gm.isGameActive == true)
         {
             Vector3 lookDirection = (player.transform.position - transform.position * speed).normalized;
 

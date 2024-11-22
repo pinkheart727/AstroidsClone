@@ -15,19 +15,19 @@ public class PlayerControl : MonoBehaviour
     public GameObject projecitlePrefab;
 
     [Header("Death")]
-    public bool gameOver = false;
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
-     
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Rotation
-        if (gameOver == false)
+        if (gm.isGameActive == true)
         {
             horizontalInput = Input.GetAxis("Horizontal");
 
@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
 
        
         //Shooting
-        if(Input.GetKeyDown(KeyCode.Space) && gameOver == false)
+        if(Input.GetKeyDown(KeyCode.Space) && gm.isGameActive == true)
         {
             Instantiate(projecitlePrefab, transform.position, transform.rotation);
         }
@@ -46,13 +46,12 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         //Movement
-        if (gameOver == false)
+        if (gm.isGameActive == true)
         {
             verticalInput = Input.GetAxis("Vertical");
 
             transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime * verticalInput);
         }
-        
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -60,7 +59,7 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Game Over");
-            gameOver = true;
+            gm.GameOver();
         }
     }
 }

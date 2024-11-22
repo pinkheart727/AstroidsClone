@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public int score;
     public TextMeshProUGUI scoreDisplay;
 
-    //[Header("Game Over")]
+    [Header("Game Over")]
+    public TextMeshProUGUI gameOverText;
+    public bool isGameActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +34,11 @@ public class GameManager : MonoBehaviour
     {
         score += amountToAdd;
         UpdateScore();
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+        isGameActive = false;
     }
 }
