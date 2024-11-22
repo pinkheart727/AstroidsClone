@@ -103,7 +103,7 @@ MonoBehaviour:
   enemyRb: {fileID: -4477040044550687415}
   hasBeenHit: 0
   deathDelay: 2
-  pointValue: 5
+  pointValue: 3
 --- !u!135 &245614721933643836
 SphereCollider:
   m_ObjectHideFlags: 0

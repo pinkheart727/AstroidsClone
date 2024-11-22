@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.CompareTag("Projectile"))
         {
             hasBeenHit = true;
-            gm.AddScore(2);
+            gm.AddScore(pointValue);
             Destroy(gameObject);
             
         }
