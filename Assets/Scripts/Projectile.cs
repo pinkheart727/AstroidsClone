@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Projectile : MonoBehaviour
 {
     [Header("Speed")]
@@ -10,6 +11,8 @@ public class Projectile : MonoBehaviour
     [Header("Game Over")]
     private PlayerControl playerControlScript;
     private GameManager gm;
+
+    
 
     // Start is called before the first frame update
     void Start()
