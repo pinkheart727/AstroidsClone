@@ -10,7 +10,6 @@ public class PlayerControl : MonoBehaviour
     private float verticalInput;
     [SerializeField] private float forwardSpeed;
 
-
     [Header("Shooting")]
     public GameObject projecitlePrefab;
 
@@ -58,7 +57,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Game Over");
+            gm.LoseLife();
+        }
+        if (gm.lives <= 0)
+        {
             gm.GameOver();
         }
     }
