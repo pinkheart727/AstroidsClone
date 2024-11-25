@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b724c16d585964a86f03a190eed900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  forceRange: 4
   enemyRb: {fileID: 1976055677733172946}
   hasBeenHit: 0
   deathDelay: 2

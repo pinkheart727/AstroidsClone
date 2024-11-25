@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Movement")]
-    public float speed;
+    //public float speed;
+    public float forceRange;
 
     [Header("Rigidbody")]
     [SerializeField] private Rigidbody enemyRb;
@@ -38,6 +39,9 @@ public class Enemy : MonoBehaviour
 
         //Find Game Manager
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        //Movement
+        AddRandomForce();
     }
 
     // Update is called once per frame
@@ -49,11 +53,11 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         //Follow Player if Game continues
-        if (gm.isGameActive == true)
+        //if (gm.isGameActive == true)
         {
-            Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+            //Vector3 lookDirection = (player.transform.position - transform.position).normalized;
 
-            transform.Translate(lookDirection * Time.deltaTime * speed);
+            //transform.Translate(lookDirection * Time.deltaTime * speed);
         }
     }
 
@@ -74,5 +78,14 @@ public class Enemy : MonoBehaviour
             //Destroy(gameObject);
             
         }
+    }
+
+    public void AddRandomForce()
+    {
+        float randomForceZ = Random.Range(-forceRange, forceRange);
+        float randomForceX = Random.Range(-forceRange, forceRange);
+        Vector3 randomForce = new Vector3(randomForceX, 0, randomForceZ);
+
+        enemyRb.AddForce(randomForce, ForceMode.Impulse);
     }
 }
