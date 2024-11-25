@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
     [Header("Game Over")]
     private PlayerControl playercontrolScript;
 
+    [Header("Prefabs")]
+    public GameObject enemyPrefab;
+
+    [Header("Scaling")]
+    private float scale = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +51,7 @@ public class Enemy : MonoBehaviour
         //Follow Player if Game continues
         if (gm.isGameActive == true)
         {
-            Vector3 lookDirection = (player.transform.position - transform.position * speed).normalized;
+            Vector3 lookDirection = (player.transform.position - transform.position).normalized;
 
             transform.Translate(lookDirection * Time.deltaTime * speed);
         }
@@ -58,13 +63,15 @@ public class Enemy : MonoBehaviour
         {
             hasBeenHit = true;
             gm.AddScore(pointValue);
-            Destroy(gameObject);
-            
-        }
+            scale = scale / 2;
+            transform.localScale = new Vector3(scale, scale, scale);
 
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
+            if (scale < 0.15)
+            {
+                Destroy(gameObject);
+            }
+
+            //Destroy(gameObject);
             
         }
     }
