@@ -539,8 +539,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4966451251079348576, guid: 4902b4acb7338c44b94b49036d67bfcf, type: 3}
   spawnRangeX: 20
   spawnRangeZ: 20
-  waveNumber: 1
-  enemyCount: 0
+  waveNumber: 5
+  enemyCount: 5
 --- !u!4 &987977123
 Transform:
   m_ObjectHideFlags: 0

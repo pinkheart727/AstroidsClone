@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Movement")]
     //public float speed;
     public float forceRange;
+    public float torqueRange;
 
     [Header("Rigidbody")]
     [SerializeField] private Rigidbody enemyRb;
@@ -40,8 +41,11 @@ public class Enemy : MonoBehaviour
         //Find Game Manager
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        //Movement
-        AddRandomForce();
+        if (gm.isGameActive == true)
+        {
+            AddRandomForce();
+            AddRandomTorque();
+        }
     }
 
     // Update is called once per frame
@@ -87,5 +91,11 @@ public class Enemy : MonoBehaviour
         Vector3 randomForce = new Vector3(randomForceX, 0, randomForceZ);
 
         enemyRb.AddForce(randomForce, ForceMode.Impulse);
+    }
+
+    public void AddRandomTorque()
+    {
+        float randomTorque = Random.Range(-torqueRange, torqueRange);
+        enemyRb.AddTorque(Vector3.back * randomTorque, ForceMode.Impulse);
     }
 }
