@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
             playerAudio.PlayOneShot(isHitSound, 1.0f);
             gm.LoseLife();
         }
-        if (gm.lives <= 0)
+        if (gm.lives <= 0 && gm.isGameActive == true)
         {
             playerAudio.PlayOneShot(death, 1.0f);
             gm.GameOver();
