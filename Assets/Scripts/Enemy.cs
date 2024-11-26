@@ -28,6 +28,10 @@ public class Enemy : MonoBehaviour
     [Header("Scaling")]
     private float scale = 0.3f;
 
+    [Header("Audio")]
+    public AudioClip isHitSound;
+    private AudioSource enemyAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +50,10 @@ public class Enemy : MonoBehaviour
             AddRandomForce();
             AddRandomTorque();
         }
+
+
+        //Audio
+        enemyAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -73,9 +81,12 @@ public class Enemy : MonoBehaviour
             gm.AddScore(pointValue);
             scale = scale / 2;
             transform.localScale = new Vector3(scale, scale, scale);
+            enemyAudio.PlayOneShot(isHitSound, 0.5f);
 
             if (scale < 0.15)
             {
+                enemyAudio.PlayOneShot(isHitSound, 0.25f);
+
                 Destroy(gameObject);
             }
 

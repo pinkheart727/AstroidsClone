@@ -16,10 +16,20 @@ public class PlayerControl : MonoBehaviour
     [Header("Death")]
     private GameManager gm;
 
+    [Header("Audio")]
+    public AudioClip shootingSound;
+    public AudioClip isHitSound;
+    private AudioSource playerAudio;
+    public AudioClip death;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Game Manager
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        //Audio
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,6 +49,7 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && gm.isGameActive == true)
         {
             Instantiate(projecitlePrefab, transform.position, transform.rotation);
+            playerAudio.PlayOneShot(shootingSound, 0.1f);
         }
     }
 
@@ -57,10 +68,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && gm.isGameActive == true)
         {
+            playerAudio.PlayOneShot(isHitSound, 1.0f);
             gm.LoseLife();
         }
         if (gm.lives <= 0)
         {
+            playerAudio.PlayOneShot(death, 1.0f);
             gm.GameOver();
         }
     }
