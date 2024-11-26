@@ -99,6 +99,12 @@ public class Enemy : MonoBehaviour
             AddRandomForce();
             AddRandomTorque();
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            AddRandomForce();
+            AddRandomTorque();
+        }
     }
 
     public void AddRandomForce()
