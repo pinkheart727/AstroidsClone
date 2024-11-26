@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && gm.isGameActive == true)
         {
             gm.LoseLife();
         }
