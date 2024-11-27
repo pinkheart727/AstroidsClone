@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Projectile"))
+        if(collision.gameObject.CompareTag("Projectile") && gm.isGameActive == true)
         {
             hasBeenHit = true;
             gm.AddScore(pointValue);

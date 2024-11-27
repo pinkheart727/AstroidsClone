@@ -46,7 +46,7 @@ public class PlayerControl : MonoBehaviour
 
        
         //Shooting
-        if(Input.GetKeyDown(KeyCode.Space) && gm.isGameActive == true)
+        if(Input.GetButtonDown("Shoot") && gm.isGameActive == true)
         {
             Instantiate(projecitlePrefab, transform.position, transform.rotation);
             playerAudio.PlayOneShot(shootingSound, 0.1f);
