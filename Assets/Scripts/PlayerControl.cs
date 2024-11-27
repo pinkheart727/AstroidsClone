@@ -51,6 +51,12 @@ public class PlayerControl : MonoBehaviour
             Instantiate(projecitlePrefab, transform.position, transform.rotation);
             playerAudio.PlayOneShot(shootingSound, 0.1f);
         }
+
+        //Exit
+        if(Input.GetButtonDown("Cancel"))
+        {
+            Application.Quit();
+        }
     }
 
     private void FixedUpdate()

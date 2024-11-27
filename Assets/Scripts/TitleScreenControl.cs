@@ -8,7 +8,7 @@ public class TitleScreenControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Shoot"))
+        if(Input.GetButtonDown("Start"))
         {
             SceneManager.LoadScene("MainLevel");
         }
